@@ -42,6 +42,45 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
+        .money-loader {
+            position: absolute;
+            inset: 0;
+            overflow: hidden;
+            pointer-events: none;
+        }
+        .money-loader span {
+            position: absolute;
+            top: -50px;
+            width: 72px;
+            height: 72px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            animation: money-fall 2.4s linear infinite;
+        }
+        .money-loader span:nth-child(1) { left: 6%; animation-delay: 0s; animation-duration: 2.2s; }
+        .money-loader span:nth-child(2) { left: 20%; animation-delay: 0.35s; animation-duration: 2.6s; }
+        .money-loader span:nth-child(3) { left: 34%; animation-delay: 0.15s; animation-duration: 2.4s; }
+        .money-loader span:nth-child(4) { left: 52%; animation-delay: 0.5s; animation-duration: 2.8s; }
+        .money-loader span:nth-child(5) { left: 70%; animation-delay: 0.25s; animation-duration: 2.5s; }
+        .money-loader span:nth-child(6) { left: 86%; animation-delay: 0.6s; animation-duration: 2.9s; }
+        @keyframes money-fall {
+            0% {
+                transform: translateY(-60px) rotate(0deg);
+                opacity: 0;
+            }
+            10% { opacity: 1; }
+            100% {
+                transform: translateY(110vh) rotate(180deg);
+                opacity: 0;
+            }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            .money-loader span {
+                animation: none;
+                opacity: 0.4;
+            }
+        }
         /* Custom scrollbar */
         ::-webkit-scrollbar {
             width: 6px;
@@ -57,7 +96,6 @@
     </style>
 </head>
 <body class="text-slate-300 antialiased selection:bg-emerald-500/30 selection:text-emerald-200 overflow-x-hidden">
-
     <!-- Navigation -->
     <nav class="fixed top-0 left-0 right-0 z-50 border-b border-white/5 bg-slate-950/80 backdrop-blur-md">
         <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
@@ -99,6 +137,27 @@
     <section class="relative pt-32 pb-20 md:pt-48 md:pb-32 overflow-hidden border-b border-white/5">
         <!-- Background Effects -->
         <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full h-[500px] bg-emerald-500/5 blur-[120px] rounded-full pointer-events-none"></div>
+        <div class="money-loader z-0" aria-hidden="true">
+            <span><i data-lucide="banknote" class="w-9 h-9 text-emerald-200"></i></span>
+            <span><i data-lucide="banknote" class="w-9 h-9 text-emerald-200"></i></span>
+            <span><i data-lucide="banknote" class="w-9 h-9 text-emerald-200"></i></span>
+            <span><i data-lucide="banknote" class="w-9 h-9 text-emerald-200"></i></span>
+            <span><i data-lucide="banknote" class="w-9 h-9 text-emerald-200"></i></span>
+            <span><i data-lucide="banknote" class="w-9 h-9 text-emerald-200"></i></span>
+            <span><i data-lucide="banknote" class="w-9 h-9 text-emerald-200"></i></span>
+            <span><i data-lucide="banknote" class="w-9 h-9 text-emerald-200"></i></span>
+            <span><i data-lucide="banknote" class="w-9 h-9 text-emerald-200"></i></span>
+            <span><i data-lucide="banknote" class="w-9 h-9 text-emerald-200"></i></span>
+            <span><i data-lucide="banknote" class="w-9 h-9 text-emerald-200"></i></span>
+            <span><i data-lucide="banknote" class="w-9 h-9 text-emerald-200"></i></span>
+            <span><i data-lucide="banknote" class="w-9 h-9 text-emerald-200"></i></span>
+            <span><i data-lucide="banknote" class="w-9 h-9 text-emerald-200"></i></span>
+            <span><i data-lucide="banknote" class="w-9 h-9 text-emerald-200"></i></span>
+            <span><i data-lucide="banknote" class="w-9 h-9 text-emerald-200"></i></span>
+            <span><i data-lucide="banknote" class="w-9 h-9 text-emerald-200"></i></span>
+            <span><i data-lucide="banknote" class="w-9 h-9 text-emerald-200"></i></span>
+            <span><i data-lucide="banknote" class="w-9 h-9 text-emerald-200"></i></span>
+        </div>
         
         <div class="max-w-4xl mx-auto px-6 text-center relative z-10">
             <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-emerald-500/20 bg-emerald-500/5 text-emerald-400 text-xs font-medium mb-8">
@@ -672,6 +731,7 @@
                 link.addEventListener("click", closeMobileMenu);
             });
         }
+
     </script>
 
 </body></html>
