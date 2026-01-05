@@ -98,12 +98,11 @@
             opacity: 1;
             transform: translateY(0);
         }
-        .social-proof-dot {
-            width: 10px;
-            height: 10px;
-            border-radius: 999px;
-            background: #34d399;
-            box-shadow: 0 0 0 6px rgba(16, 185, 129, 0.15);
+        .social-proof-icon {
+            width: 22px;
+            height: 22px;
+            color: #34d399;
+            filter: drop-shadow(0 0 8px rgba(16, 185, 129, 0.25));
             flex-shrink: 0;
         }
         .social-proof-toast .toast-title {
@@ -282,7 +281,7 @@
 
     <!-- Social Proof Toast -->
     <div id="social-proof-toast" class="social-proof-toast" aria-live="polite">
-        <span class="social-proof-dot" aria-hidden="true"></span>
+        <i class="social-proof-icon" data-lucide="banknote" aria-hidden="true"></i>
         <div>
             <div class="toast-title">
                 <span id="toast-name">R***</span> mendapatkan <span id="toast-amount" class="toast-amount">Rp 216.000</span>
