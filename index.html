@@ -834,10 +834,15 @@
                     toastName.textContent = currentName;
                     toastAmount.textContent = currentAmount;
                     toast.classList.add("show");
+                    scheduleNext();
                 }, 500);
             };
+            const scheduleNext = () => {
+                const delay = Math.floor(Math.random() * 3000) + 3000;
+                window.setTimeout(cycleToast, delay);
+            };
             toast.classList.add("show");
-            window.setInterval(cycleToast, 3200);
+            scheduleNext();
         }
 
     </script>
