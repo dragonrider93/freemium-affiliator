@@ -75,10 +75,65 @@
                 opacity: 0;
             }
         }
+        .social-proof-toast {
+            position: fixed;
+            left: 20px;
+            bottom: 20px;
+            z-index: 60;
+            display: flex;
+            gap: 12px;
+            align-items: center;
+            padding: 12px 16px;
+            border-radius: 14px;
+            background: rgba(2, 6, 23, 0.88);
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            box-shadow: 0 14px 30px rgba(0, 0, 0, 0.45);
+            opacity: 0;
+            transform: translateY(16px);
+            transition: opacity 0.45s ease, transform 0.45s ease;
+            pointer-events: none;
+            max-width: 320px;
+        }
+        .social-proof-toast.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .social-proof-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 999px;
+            background: #34d399;
+            box-shadow: 0 0 0 6px rgba(16, 185, 129, 0.15);
+            flex-shrink: 0;
+        }
+        .social-proof-toast .toast-title {
+            font-size: 13px;
+            font-weight: 600;
+            color: #f8fafc;
+        }
+        .social-proof-toast .toast-amount {
+            color: #34d399;
+        }
+        .social-proof-toast .toast-sub {
+            font-size: 11px;
+            color: #94a3b8;
+            margin-top: 2px;
+        }
+        @media (max-width: 640px) {
+            .social-proof-toast {
+                left: 12px;
+                right: 12px;
+                bottom: 74px;
+                max-width: none;
+            }
+        }
         @media (prefers-reduced-motion: reduce) {
             .money-loader span {
                 animation: none;
                 opacity: 0.4;
+            }
+            .social-proof-toast {
+                transition: none;
             }
         }
         /* Custom scrollbar */
@@ -224,6 +279,17 @@
             </div>
         </div>
     </section>
+
+    <!-- Social Proof Toast -->
+    <div id="social-proof-toast" class="social-proof-toast" aria-live="polite">
+        <span class="social-proof-dot" aria-hidden="true"></span>
+        <div>
+            <div class="toast-title">
+                <span id="toast-name">R***</span> mendapatkan <span id="toast-amount" class="toast-amount">Rp 216.000</span>
+            </div>
+            <div class="toast-sub">Komisi ditambah ke dompet</div>
+        </div>
+    </div>
 
     <!-- 3. Skema Komisi (Data Source: table komisi.json) -->
     <section id="komisi" class="py-24 relative bg-slate-950">
@@ -731,6 +797,48 @@
             mobileMenu.querySelectorAll("a").forEach((link) => {
                 link.addEventListener("click", closeMobileMenu);
             });
+        }
+
+        const toast = document.getElementById("social-proof-toast");
+        const toastName = document.getElementById("toast-name");
+        const toastAmount = document.getElementById("toast-amount");
+        if (toast && toastName && toastAmount) {
+            const names = [
+                "R***", "Fa***", "Na***", "Ri***", "A***", "D***", "In***",
+                "A***", "S***", "R***", "Ti***", "Ba***", "N***", "Y***",
+                "Far***", "D***", "H***", "Il***"
+            ];
+            const amounts = [
+                "Rp 432.000",
+                "Rp 216.000",
+                "Rp 50.625",
+                "Rp 101.250",
+                "Rp 18.000",
+                "Rp 72.000"
+            ];
+            const pickRandom = (list, current) => {
+                if (list.length < 2) return list[0];
+                let next = list[Math.floor(Math.random() * list.length)];
+                while (next === current) {
+                    next = list[Math.floor(Math.random() * list.length)];
+                }
+                return next;
+            };
+            let currentName = toastName.textContent.trim();
+            let currentAmount = toastAmount.textContent.trim();
+
+            const cycleToast = () => {
+                toast.classList.remove("show");
+                window.setTimeout(() => {
+                    currentName = pickRandom(names, currentName);
+                    currentAmount = pickRandom(amounts, currentAmount);
+                    toastName.textContent = currentName;
+                    toastAmount.textContent = currentAmount;
+                    toast.classList.add("show");
+                }, 500);
+            };
+            toast.classList.add("show");
+            window.setInterval(cycleToast, 3200);
         }
 
     </script>
