@@ -253,7 +253,7 @@
                         <i data-lucide="users" class="w-6 h-6 text-emerald-400"></i>
                     </div>
                     <div>
-                        <div class="text-2xl font-semibold text-white">140+</div>
+                        <div class="text-2xl font-semibold text-white">155+</div>
                         <div class="text-sm text-slate-400">Total Affiliator Aktif</div>
                     </div>
                 </div>
@@ -813,7 +813,9 @@
                 "Rp 50.625",
                 "Rp 101.250",
                 "Rp 18.000",
-                "Rp 72.000"
+                "Rp 72.000",
+                "Rp 13.050",
+                "Rp 3.150"
             ];
             const pickRandom = (list, current) => {
                 if (list.length < 2) return list[0];
@@ -834,15 +836,10 @@
                     toastName.textContent = currentName;
                     toastAmount.textContent = currentAmount;
                     toast.classList.add("show");
-                    scheduleNext();
                 }, 500);
             };
-            const scheduleNext = () => {
-                const delay = Math.floor(Math.random() * 3000) + 3000;
-                window.setTimeout(cycleToast, delay);
-            };
             toast.classList.add("show");
-            scheduleNext();
+            window.setInterval(cycleToast, 3200);
         }
 
     </script>
